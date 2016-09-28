@@ -6,13 +6,35 @@ layout: default
 
 ## Conventions and Patterns
 
+### Unit Test Best Practices
+
+#### Avoid Shared Setup
+
+#### Only Setup Data Needed For the Individual Test to Pass 
+
+### Unit Test Naming Convention
+
+**Controllers**
+Controller unit tests should be suffixed with "Tests"
+
+**Handlers**
+Handler unit test should be suffixed with "Should"
+
+### Naming Conventions for Constants
+
+Please name constants like this:
+`private const int EventToDuplicateId = 1;`
+
+and not like this:
+`const int EVENT_TO_DUPLICATE_ID = 1;`
+
 ### Mediatr Components - Naming Conventions
 
 The project has adopted a CQRS pattern using the Mediatr library. We have discussed ([read discussion](https://github.com/HTBox/allReady/issues/1262)) the naming for these components and agreed that we will *not* suffix them with "Async".
 
 **Commands:**
 
-A command message should end with "Command" and descibe the action that is intended. e.g.
+A command message should end with "Command" and be named in an imperative style. e.g. A Command is an order, it tell something in the system to do a specific task. A Command usually carries more data on it than a Notification because commands are the main source of getting UI input into the system via handlers. A Command shoudl have only one logical handler. e.g. you don't send a command to more than one handler
 
 - EditCampaignCommand
 - DeleteTaskCommand
@@ -33,3 +55,16 @@ The handlers should match the query message name with the suffix of "Handler". e
 
 - EventSummaryQueryHandler
 - TaskDetailQueryHandler
+
+**Notifications**
+
+A notification message should end with "Notification" and describe the action that was performed. Notifications shoudl be named in past tense, and they inform subscribers that something has happened.
+
+- CampaignEditedNotification
+- TaskDeletedNotification
+
+ Unlike Commands, Notifications should not carry a lot of data on them. They should carry any type of unique identifiers (primary keys, etc...) that will be used by subscribers to correlate queries back to the database to get the infromation they need in order to do their job. This reduces temporal coupling of the system.
+
+ The handlers should be with the suffix of "Handler". e.g. 
+ 
+ Since multiple subscribers could be interested in a given notification.  
