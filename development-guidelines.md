@@ -6,11 +6,21 @@ layout: default
 
 ## Conventions and Patterns
 
+### Naming Conventions for Constants
+
+Please name constants like this:
+`private const int EventToDuplicateId = 1;`
+
+and not like this:
+`const int EVENT_TO_DUPLICATE_ID = 1;`
+
 ### Unit Test Best Practices
 
-#### Avoid Shared Setup
+#### Avoid Shared Test Setup 
+exammple
 
-#### Only Setup Data Needed For the Individual Test to Pass 
+#### Only Setup Data Needed For the Individual Test to Pass
+exmaple 
 
 ### Unit Test Naming Convention
 
@@ -20,13 +30,6 @@ Controller unit tests should be suffixed with "Tests"
 **Handlers**
 Handler unit test should be suffixed with "Should"
 
-### Naming Conventions for Constants
-
-Please name constants like this:
-`private const int EventToDuplicateId = 1;`
-
-and not like this:
-`const int EVENT_TO_DUPLICATE_ID = 1;`
 
 ### Mediatr Components - Naming Conventions
 
