@@ -37,7 +37,7 @@ The project has adopted a CQRS pattern using the Mediatr library. We have discus
 
 **Commands:**
 
-A command message should end with "Command" and be named in an imperative style. e.g. A Command is an order, it tell something in the system to do a specific task. A Command usually carries more data on it than a Notification because commands are the main source of getting UI input into the system via handlers. A Command shoudl have only one logical handler. e.g. you don't send a command to more than one handler
+A command message should end with "Command" and be named in an imperative style. e.g. A Command is an order, it tells something in the system to do a specific task. A Command usually carries more data on it than a Notification because commands are the main source of getting UI input into the system via handlers. A Command should have only one logical handler.
 
 - EditCampaignCommand
 - DeleteTaskCommand
@@ -66,8 +66,8 @@ A notification message should end with "Notification" and describe the action th
 - CampaignEditedNotification
 - TaskDeletedNotification
 
- Unlike Commands, Notifications should not carry a lot of data on them. They should carry any type of unique identifiers (primary keys, etc...) that will be used by subscribers to correlate queries back to the database to get the infromation they need in order to do their job. This reduces temporal coupling of the system.
+Since multiple subscribers could be interested in a given notification, it is possible for more than one handler to hanldle a Notification. Becaues of this, you may name Notification handlers whatever you think best describes their purpose when handling their given notification.
 
- The handlers should be with the suffix of "Handler". e.g. 
- 
- Since multiple subscribers could be interested in a given notification.  
+Unlike Commands, Notifications should not carry a lot of data on them. They should carry any type of unique identifiers (primary keys, etc...) that will be used by subscribers to correlate queries back to the database to get the infromation they need in order to do their job. This reduces temporal coupling of the system.
+
+  
